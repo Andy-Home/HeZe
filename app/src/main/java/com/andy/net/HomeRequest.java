@@ -1,6 +1,7 @@
 package com.andy.net;
 
 import com.andy.entity.Home;
+import com.andy.entity.Response;
 import com.andy.entity.Title;
 
 import org.jsoup.Jsoup;
@@ -23,13 +24,19 @@ public class HomeRequest implements Command {
      */
     private Home mHome = null;
 
+    private RequestListener mListener;
+
+    public HomeRequest(RequestListener listener) {
+        this.mListener = listener;
+    }
+
     @Override
     public void run() {
         try {
             Document doc = Jsoup.connect("http://blog.sina.com.cn/sophiagoodness").get();
             Elements elements = doc.select("div.blognavInfo");
 
-            mHome = new Home();
+            mHome = Home.getInstance();
             //设置主要标题
             for (Element a : elements.select("a")) {
                 String url = a.attr("href");
@@ -59,8 +66,12 @@ public class HomeRequest implements Command {
             mHome.setHeadPhotoUrl(headUrl);
             mHome.setName(userName);
 
+            Response response = new Response(true, "请求成功");
+
+            mListener.onSuccess(response);
         } catch (IOException e) {
             e.printStackTrace();
+            mListener.onFailure();
         }
     }
 }

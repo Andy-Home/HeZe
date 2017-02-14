@@ -1,7 +1,7 @@
 package com.andy.entity;
 
 /**
- * 首页的实体,包含首页所需要显示的内容
+ * 首页的实体,包含首页所需要显示的内容.(单例模式)
  * <p>
  * Created by andy on 17-2-14.
  */
@@ -36,6 +36,19 @@ public class Home {
      * 头像链接
      */
     private String headPhotoUrl;
+
+    private static Home mHome;
+
+    private Home() {
+
+    }
+
+    public static Home getInstance() {
+        if (mHome == null) {
+            mHome = new Home();
+        }
+        return mHome;
+    }
 
     public Title getHome() {
         return home;

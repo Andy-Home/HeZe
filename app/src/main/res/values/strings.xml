@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">HeZe</string>
+    <string name="app_name">和泽书院</string>
+
+    <!-- contentDescription -->
+    <string name="headView">头像</string>
 </resources>

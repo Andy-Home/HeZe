@@ -1,4 +1,4 @@
-package com.andy.heze;
+package com.andy.mvp.main;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
