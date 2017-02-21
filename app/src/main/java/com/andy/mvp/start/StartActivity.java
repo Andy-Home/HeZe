@@ -17,28 +17,14 @@ import com.andy.net.RequestListener;
  * Created by andy on 17-2-14.
  */
 
-public class StartActivity extends BaseActivity {
+public class StartActivity extends BaseActivity implements StartContract.View {
 
-    private Request request;
+    private StartContract.Presenter mPresenter = new StartPresenter();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        request = new Request(new HomeRequest(new RequestListener() {
-            @Override
-            public void onSuccess(Response response) {
-                if (response.isSuccess()) {
-                    Intent intent = new Intent(StartActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onFailure() {
-
-            }
-        }));
+        mPresenter.requestHomeData(this);
     }
 
     @Override
@@ -47,8 +33,13 @@ public class StartActivity extends BaseActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        request.execute();
+    public void requestHomeDataSuccess(Response response) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void requestHomeDataFailure(Response response) {
+
     }
 }

@@ -66,12 +66,10 @@ public class HomeRequest implements Command {
             mHome.setHeadPhotoUrl(headUrl);
             mHome.setName(userName);
 
-            Response response = new Response(true, "请求成功");
-
-            mListener.onSuccess(response);
+            mListener.onSuccess(new Response(true, "请求成功"));
         } catch (IOException e) {
             e.printStackTrace();
-            mListener.onFailure();
+            mListener.onFailure(new Response(false, "请求失败"));
         }
     }
 }

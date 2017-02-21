@@ -5,7 +5,8 @@
     android:background="@color/menu_background"
     android:orientation="vertical">
 
-    <ImageView
+    <com.andy.view.CircleImageView
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:id="@+id/headView"
         android:layout_gravity="center_horizontal"
         android:layout_width="60dp"
@@ -26,15 +27,6 @@
         android:layout_marginTop="@dimen/menu_space"
         android:textColor="@color/textColor"
         android:gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:textSize="@dimen/menu_text"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/articleList"
-        android:layout_marginTop="@dimen/menu_space"
-        android:gravity="center_horizontal"
-        android:textColor="@color/textColor"
         android:layout_width="match_parent"
         android:textSize="@dimen/menu_text"
         android:layout_height="wrap_content" />

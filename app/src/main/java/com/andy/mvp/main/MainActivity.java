@@ -1,20 +1,27 @@
 package com.andy.mvp.main;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.TextView;
 
 import com.andy.entity.Home;
 import com.andy.mvp.BaseActivity;
+import com.andy.view.CircleImageView;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.Request;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
+import com.bumptech.glide.request.target.Target;
 
 public class MainActivity extends BaseActivity {
 
     private DrawerLayout mDrawerLayout;
-    private TextView mHome;
+    private TextView mHome; //TODO：首页模块放目录
     private TextView mPhoto;
     private TextView mAboutMe;
-    private TextView mArticleList;
-
+    private CircleImageView mCircleView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +34,12 @@ public class MainActivity extends BaseActivity {
         mHome = (TextView) findViewById(R.id.home);
         mPhoto = (TextView) findViewById(R.id.photo);
         mAboutMe = (TextView) findViewById(R.id.aboutMe);
-        mArticleList = (TextView) findViewById(R.id.articleList);
+        mCircleView = (CircleImageView) findViewById(R.id.headView);
 
         Home home = Home.getInstance();
-        mHome.setText(home.getHome().getTitle());
+        mHome.setText(home.getArticleList().getTitle());
         mPhoto.setText(home.getPhoto().getTitle());
         mAboutMe.setText(home.getAboutMe().getTitle());
-        mArticleList.setText(home.getArticleList().getTitle());
+        Glide.with(this).load(home.getHeadPhotoUrl()).asBitmap().into(mCircleView);
     }
 }

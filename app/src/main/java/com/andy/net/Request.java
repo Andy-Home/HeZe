@@ -9,6 +9,9 @@ package com.andy.net;
 public class Request {
     private Command command;
 
+    public Request() {
+    }
+
     public Request(Command command) {
         this.command = command;
     }
@@ -18,8 +21,9 @@ public class Request {
      *
      * @param command 命令
      */
-    public void setCommand(Command command) {
+    public Request setCommand(Command command) {
         this.command = command;
+        return this;
     }
 
     /**
